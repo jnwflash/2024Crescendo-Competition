@@ -9,6 +9,9 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.OIConstants.ControllerDevice;
 import frc.robot.Devices.Controller;
 import frc.robot.commands.Autos;
+import frc.robot.commands.ClimbersDown;
+import frc.robot.commands.ClimbersStop;
+import frc.robot.commands.ClimbersUp;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
@@ -17,7 +20,10 @@ import frc.robot.commands.ZeroHeadingCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IMUSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.SmartDashboardSubsystem;
+import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
+import edu.wpi.first.wpilibj.GenericHID;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -35,11 +41,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RobotContainer {
 
+    
   public static final IMUSubsystem imuSubsystem = new IMUSubsystem();
 
   public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   public static final SmartDashboardSubsystem smartDashboardSubsystem = new SmartDashboardSubsystem();
+
+  public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+
+  public GenericHID buttonBox1 = new GenericHID(0);
+
+  public GenericHID buttonBox2 = new GenericHID(1);
 
   public static Controller driveStick;
 
@@ -67,7 +80,8 @@ public class RobotContainer {
   
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
-
+    private final CommandGenericHID m_operator1Controller = new CommandGenericHID(0);
+    private final CommandGenericHID m_operator2Controller = new CommandGenericHID(1);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
@@ -140,11 +154,20 @@ public class RobotContainer {
       new Trigger(m_exampleSubsystem::exampleCondition)
               .onTrue(new ExampleCommand(m_exampleSubsystem));
 
+        new Trigger(m_operator2Controller.button(1))
+            .onTrue(new ClimbersUp(climberSubsystem));
+        new Trigger(m_operator2Controller.button(2))
+            .onTrue(new ClimbersStop(climberSubsystem));
+        new Trigger(m_operator2Controller.button(3))
+            .onTrue(new ClimbersDown(climberSubsystem));
+
       // Schedule `exampleMethodCommand` when the Xbox controller's B button is
       // pressed,
       // cancelling on release.
-      m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+      //new Trigger(buttonBox2.getRawButtonPressed(0));
 
+      
+      
       //swerveValuesTesting();
 
       //trajectoryCalibration();

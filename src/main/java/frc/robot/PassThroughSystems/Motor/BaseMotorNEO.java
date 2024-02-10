@@ -199,7 +199,7 @@ public class BaseMotorNEO implements BaseMotorInterface {
     }
 
     public void setAngleMotorChassisAngleSI(double angle) {
-        System.out.println("T:"+degreesToTicks(angle) + " A: "+angle);
+        //System.out.println("T:"+degreesToTicks(angle) + " A: "+angle);
         motorNEO.getPIDController().setReference(degreesToTicks(angle), ControlType.kPosition);
         
     }
