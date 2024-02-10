@@ -5,7 +5,11 @@
 package frc.robot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.revrobotics.CANSparkBase.IdleMode;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
@@ -33,9 +37,13 @@ import edu.wpi.first.math.util.Units;
  */
 public final class Constants {
 
-	public static class OperatorConstants {
-		public static final int kDriverControllerPort = 0;
-	}
+	public static final class LoggingConstants {
+        public static final boolean kLogging = true;
+    }
+
+	public static final class TuningModeConstants {
+        public static final boolean kTuning = true;
+    }
 
 	/**
 	 * This class contains configuration constants for the chassis, the individual
