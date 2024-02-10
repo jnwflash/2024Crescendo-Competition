@@ -25,7 +25,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -46,6 +47,18 @@ public class RobotContainer {
 
   public static Controller xboxController;
 
+  public static final String kDefaultAuto = "1MeterForward";
+
+  public static final String kCustomAuto = "SwiggleWiggle";
+
+  public static final String kCustomAuto2 = "1Meter45Diag";
+
+  public static final String kCustomAuto3 = "Test";
+
+  public String ChosenAuto;
+
+  public final SendableChooser<String> m_chooser = new SendableChooser<>();
+
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
@@ -58,6 +71,18 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
+
+    m_chooser.setDefaultOption("1MeterForward", kDefaultAuto);
+
+    m_chooser.addOption("SwiggleWiggle", kCustomAuto);
+
+    m_chooser.addOption("1Meter45Diag", kCustomAuto2);
+
+    m_chooser.addOption("Test", kCustomAuto3);
+
+    SmartDashboard.putData("Auto choices", m_chooser);
+
+    
       // Configure driver interface - binding joystick objects to port numbers
       configureDriverInterface();
 
@@ -374,6 +399,7 @@ private double getDriverXAxis() {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    ChosenAuto = m_chooser.getSelected();
+    return new RunTrajectorySequenceRobotAtStartPoint(ChosenAuto);
   }
 }
