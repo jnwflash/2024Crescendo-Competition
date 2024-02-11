@@ -8,6 +8,10 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.OIConstants.ControllerDevice;
 import frc.robot.Devices.Controller;
+import frc.robot.commands.ArmUp;
+import frc.robot.commands.ArmDown;
+import frc.robot.commands.ArmStop;
+
 import frc.robot.commands.Autos;
 import frc.robot.commands.ClimbersDown;
 import frc.robot.commands.ClimbersStop;
@@ -20,6 +24,7 @@ import frc.robot.commands.ZeroHeadingCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IMUSubsystem;
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.SmartDashboardSubsystem;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
@@ -49,6 +54,9 @@ public class RobotContainer {
   public static final SmartDashboardSubsystem smartDashboardSubsystem = new SmartDashboardSubsystem();
 
   public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+
+    public static final ArmSubsystem armSubsystem = new ArmSubsystem();
+
 
   public GenericHID buttonBox1 = new GenericHID(0);
 
@@ -153,14 +161,20 @@ public class RobotContainer {
       // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
       new Trigger(m_exampleSubsystem::exampleCondition)
               .onTrue(new ExampleCommand(m_exampleSubsystem));
-
+        //climber
         new Trigger(m_operator2Controller.button(1))
             .onTrue(new ClimbersUp(climberSubsystem));
         new Trigger(m_operator2Controller.button(2))
             .onTrue(new ClimbersStop(climberSubsystem));
         new Trigger(m_operator2Controller.button(3))
             .onTrue(new ClimbersDown(climberSubsystem));
-
+        //arm
+        new Trigger(m_operator2Controller.button(4))
+            .onTrue(new ArmUp(armSubsystem));
+        new Trigger(m_operator2Controller.button(5))
+            .onTrue(new ArmDown(armSubsystem));
+        new Trigger(m_operator2Controller.button(6))
+            .onTrue(new ArmStop(armSubsystem));
       // Schedule `exampleMethodCommand` when the Xbox controller's B button is
       // pressed,
       // cancelling on release.

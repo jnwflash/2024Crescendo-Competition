@@ -1,28 +1,45 @@
 Can IDS
 
-SWERVE
-Front left - angle motor ID 1
-Front left - drive motor ID 2
+SWERVE-
 
-Front right - angle motor ID 3
-Front right - drive motor ID 4
+    Front left - angle motor ID 1
+    Front left - drive motor ID 2
 
-Back left - angle motor ID 5
-Back left - drive motor ID 6
+    Front right - angle motor ID 3
+    Front right - drive motor ID 4
 
-Back right - angle motor ID 7
-Back right - drive motor ID 8
+    Back left - angle motor ID 5
+    Back left - drive motor ID 6
 
-PDH - ID 9
+    Back right - angle motor ID 7
+    Back right - drive motor ID 8
 
-ARM ROTATION
+PDH 
+
+ID 9
+
+DEAD AXLE-
 
 Left motor ID 10
 
 Right motor ID 11
 
-CLIMBERS
+INTAKE-
 
-Left motor ID 12
+intake motor ID 12
 
-Right motor ID 13
+lead screw motor ID 13
+
+SHOOTER-
+
+top motor ID 14
+
+bottom motor ID 15
+
+CLIMBERS-
+
+Left motor ID 16
+
+Right motor ID 17
+
+16 total spark maxes
