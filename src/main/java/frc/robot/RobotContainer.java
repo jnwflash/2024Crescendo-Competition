@@ -5,15 +5,13 @@
 package frc.robot;
 
 import frc.robot.Constants.OIConstants;
-import frc.robot.ScoringConstants.OperatorConstants;
 import frc.robot.Constants.OIConstants.ControllerDevice;
-import edu.wpi.first.wpilibj.GenericHID;
 import frc.robot.Devices.Controller;
 import frc.robot.commands.ArmUp;
 import frc.robot.commands.ArmDown;
 import frc.robot.commands.ArmStop;
 
-import frc.robot.commands.Autos;
+//import frc.robot.commands.Autos;
 import frc.robot.commands.ClimbersDown;
 import frc.robot.commands.ClimbersStop;
 import frc.robot.commands.ClimbersUp;
@@ -31,18 +29,18 @@ import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+//import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+//import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-    /**
-     * This class is where the bulk of the robot should be declared. Since Command-based is a
-     * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
-     * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
-     * subsystems, commands, and trigger mappings) should be declared here.
-     */
+/**
+ * This class is where the bulk of the robot should be declared. Since Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
+ * subsystems, commands, and trigger mappings) should be declared here.
+ */
 public class RobotContainer {
 
     public static Controller xboxController;
