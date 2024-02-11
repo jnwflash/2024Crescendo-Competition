@@ -10,7 +10,7 @@ public class AimToSpeakerFromPodium extends SequentialCommandGroup {
     public AimToSpeakerFromPodium(
             ScoringArmRotationSubsystem m_arm) {
         addCommands(
-                new InstantCommand(() -> System.out.println("**START Move to Travel Position**")),
+                new InstantCommand(() -> System.out.println("**START Move to Podium Position**")),
                 new ParallelCommandGroup(
                     new InstantCommand(() -> m_arm.setArmPositionDegrees(ArmConstants.kPodiumArm))
                     //,new InstantCommand(() -> m_arm.TBD_EXTEND_ARM(ArmConstants.kAmpExtension))                    )

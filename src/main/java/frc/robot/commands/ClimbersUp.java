@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
@@ -10,7 +11,10 @@ public class ClimbersUp extends SequentialCommandGroup{
 
     ){
     addCommands(
+        new ParallelCommandGroup(
         new InstantCommand(() -> m_climber.climber1Up()),
-        new InstantCommand(() -> m_climber.climber2Up()));
+        new InstantCommand(() -> m_climber.climber2Up())
+        )
+    );
     }
 }

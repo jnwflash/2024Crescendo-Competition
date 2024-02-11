@@ -39,17 +39,9 @@ public final class ScoringConstants {
     }
 
 	public static final class ClimberConstants {
-        public static final int kClimber1CanId = 000;
-		public static final int kClimber2CanId = 000;
-		public static final IdleMode kClimberMotor1IdleMode = IdleMode.kBrake;
-		public static final IdleMode kClimberMotor2IdleMode = IdleMode.kBrake;
-        public static final double speed = .25;
-		public static final int kClimberMotor1CurrentLimit = 0;
-		public static final int kClimberMotor2CurrentLimit = 0;
-		public static double kClimber1MaxOutput = 0.8;
-        public static double kClimber1MinOutput = -0.8;
-		public static double kClimber2MaxOutput = 0.8;
-        public static double kClimber2MinOutput = -0.8;
+        public static final int kClimber1CanId = 16;
+		public static final int kClimber2CanId = 17;
+        public static final double kSpeed = .25;
     }
 
 	public static final class ShooterConstants {

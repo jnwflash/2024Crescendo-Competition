@@ -7,11 +7,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkBase.IdleMode;
+import frc.robot.ScoringConstants.ClimberConstants;
 
 public class ClimberSubsystem extends SubsystemBase {
-
-  private static final int climber1ID = 16;
-  private static final int climber2ID = 17;
 
   private CANSparkMax climberMotor1;
   private CANSparkMax climberMotor2;
@@ -19,36 +18,41 @@ public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
   public ClimberSubsystem() {
 
-  climberMotor1 = new CANSparkMax(climber1ID, MotorType.kBrushless);
-  climberMotor2 = new CANSparkMax(climber2ID, MotorType.kBrushless);
+  climberMotor1 = new CANSparkMax(ClimberConstants.kClimber1CanId, MotorType.kBrushless);
+  climberMotor2 = new CANSparkMax(ClimberConstants.kClimber2CanId, MotorType.kBrushless);
 
   climberMotor1.restoreFactoryDefaults();
+  climberMotor1.setIdleMode(IdleMode.kBrake);
+  climberMotor1.burnFlash();
   climberMotor2.restoreFactoryDefaults();
+  climberMotor2.setIdleMode(IdleMode.kBrake);
+  climberMotor2.burnFlash();
+  
   }
 
   public void climber1Up() {
-    System.out.println("climber1Up run");
-    climberMotor1.set(-.2);
+    //System.out.println("climber1Up run");
+    climberMotor1.set(-ClimberConstants.kSpeed);
   }
   public void climber1Stop() {
-    System.out.println("climber1Stop run");
+    //System.out.println("climber1Stop run");
     climberMotor1.set(0);
   }
   public void climber1Down() {
-    System.out.println("climber1Down run");
-    climberMotor1.set(.2);
+    //System.out.println("climber1Down run");
+    climberMotor1.set(ClimberConstants.kSpeed);
   }
   public void climber2Up() {
-    System.out.println("climber2Up run");
-    climberMotor2.set(-.2);
+    //System.out.println("climber2Up run");
+    climberMotor2.set(-ClimberConstants.kSpeed);
   }
   public void climber2Stop() {
-    System.out.println("climber2Stop run");
+    //System.out.println("climber2Stop run");
     climberMotor2.set(0);
   }
   public void climber2Down() {
-    System.out.println("climber2Down run");
-    climberMotor2.set(.2);
+    //System.out.println("climber2Down run");
+    climberMotor2.set(ClimberConstants.kSpeed);
   }
     
   

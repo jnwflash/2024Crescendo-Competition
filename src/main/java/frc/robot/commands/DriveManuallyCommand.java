@@ -39,9 +39,9 @@ public class DriveManuallyCommand extends Command {
    * @param dm
    */
   private void driveControlTelemetry(double dx, double dy, double dm){
-    System.out.print("DX "+ dx);
-    System.out.print(" DY "+ dy);
-    System.out.println(" Dm "+ dm);
+    //System.out.print("DX "+ dx);
+    //System.out.print(" DY "+ dy);
+    //System.out.println(" Dm "+ dm);
   }
 
   // Called when the command is initially scheduled.
