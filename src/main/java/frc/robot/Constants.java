@@ -441,7 +441,7 @@ public final class Constants {
 	 * ability flags, such as use of the cube driving
 	 */
 	public static final class OIConstants {
-		public static final int driverControllerPort = 0;
+		public static final int driverControllerPort = 5;
 
 		public static final int robotCentricButton = 2;
 

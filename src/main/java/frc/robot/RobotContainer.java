@@ -9,7 +9,14 @@ import frc.robot.ScoringConstants.OperatorConstants;
 import frc.robot.Constants.OIConstants.ControllerDevice;
 import edu.wpi.first.wpilibj.GenericHID;
 import frc.robot.Devices.Controller;
+import frc.robot.commands.ArmUp;
+import frc.robot.commands.ArmDown;
+import frc.robot.commands.ArmStop;
+
 import frc.robot.commands.Autos;
+import frc.robot.commands.ClimbersDown;
+import frc.robot.commands.ClimbersStop;
+import frc.robot.commands.ClimbersUp;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RunTrajectorySequenceRobotAtStartPoint;
@@ -18,7 +25,11 @@ import frc.robot.commands.ZeroHeadingCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IMUSubsystem;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.SmartDashboardSubsystem;
+import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
+import edu.wpi.first.wpilibj.GenericHID;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -26,7 +37,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -35,17 +47,39 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
 
+    
   public static final IMUSubsystem imuSubsystem = new IMUSubsystem();
 
   public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   public static final SmartDashboardSubsystem smartDashboardSubsystem = new SmartDashboardSubsystem();
 
+  public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+
+    public static final ArmSubsystem armSubsystem = new ArmSubsystem();
+
+
+  public GenericHID buttonBox1 = new GenericHID(0);
+
+  public GenericHID buttonBox2 = new GenericHID(1);
+
   public static Controller driveStick;
 
   public static Controller turnStick;
 
   public static Controller xboxController;
+
+  public static final String kDefaultAuto = "1MeterForward";
+
+  public static final String kCustomAuto = "SwiggleWiggle";
+
+  public static final String kCustomAuto2 = "1Meter45Diag";
+
+  public static final String kCustomAuto3 = "Test";
+
+  public String ChosenAuto;
+
+  public final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -55,10 +89,23 @@ public class RobotContainer {
   
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
-
+    private final CommandGenericHID m_operator1Controller = new CommandGenericHID(0);
+    private final CommandGenericHID m_operator2Controller = new CommandGenericHID(1);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
+
+    m_chooser.setDefaultOption("1MeterForward", kDefaultAuto);
+
+    m_chooser.addOption("SwiggleWiggle", kCustomAuto);
+
+    m_chooser.addOption("1Meter45Diag", kCustomAuto2);
+
+    m_chooser.addOption("Test", kCustomAuto3);
+
+    SmartDashboard.putData("Auto choices", m_chooser);
+
+    
       // Configure driver interface - binding joystick objects to port numbers
       configureDriverInterface();
 
@@ -115,12 +162,27 @@ public class RobotContainer {
       // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
       new Trigger(m_exampleSubsystem::exampleCondition)
               .onTrue(new ExampleCommand(m_exampleSubsystem));
-
+        //climber
+        new Trigger(m_operator2Controller.button(1))
+            .onTrue(new ClimbersUp(climberSubsystem));
+        new Trigger(m_operator2Controller.button(2))
+            .onTrue(new ClimbersStop(climberSubsystem));
+        new Trigger(m_operator2Controller.button(3))
+            .onTrue(new ClimbersDown(climberSubsystem));
+        //arm
+        new Trigger(m_operator2Controller.button(4))
+            .onTrue(new ArmUp(armSubsystem));
+        new Trigger(m_operator2Controller.button(5))
+            .onTrue(new ArmDown(armSubsystem));
+        new Trigger(m_operator2Controller.button(6))
+            .onTrue(new ArmStop(armSubsystem));
       // Schedule `exampleMethodCommand` when the Xbox controller's B button is
       // pressed,
       // cancelling on release.
-      m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+      //new Trigger(buttonBox2.getRawButtonPressed(0));
 
+      
+      
       //swerveValuesTesting();
 
       //trajectoryCalibration();
@@ -375,6 +437,7 @@ private double getDriverXAxis() {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    ChosenAuto = m_chooser.getSelected();
+    return new RunTrajectorySequenceRobotAtStartPoint(ChosenAuto);
   }
 }
