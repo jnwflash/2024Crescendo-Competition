@@ -137,7 +137,8 @@ public class RobotContainer {
 
     private boolean getDriverFieldCentric() {
         //return !turnStick.getRawButton(OIConstants.robotCentricButton);
-        return !xboxController.getRawButton(OIConstants.robotCentricButton);
+        //return !xboxController.getRawButton(OIConstants.robotCentricButton);
+        return true;
     }
 
 /**

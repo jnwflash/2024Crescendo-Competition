@@ -13,6 +13,7 @@ import frc.robot.ScoringConstants.ShooterConstants;
 
 public class ScoringShooterSubsystem extends SubsystemBase {
     // imports motor id
+    /*
     private final CANSparkMax m_shooter1Motor = new CANSparkMax(
             ShooterConstants.kShooter1CanId, MotorType.kBrushless);
     private final CANSparkMax m_shooter2Motor = new CANSparkMax(
@@ -36,11 +37,12 @@ public class ScoringShooterSubsystem extends SubsystemBase {
     // Shooter Set Points
     private double kShooter1SetPoint;
     private double kShooter2SetPoint;
-
+ */
     /** ScoringShooterSubsystem defines the motors of the shooting portion of the robot, but does not control the arm rotational or arm extension movement. 
      * The shooter is the flywheel portion of the robot that spins quickly to power the note into the speaker or AMP. 
      * This subsytem defines the motors and motor controllers, PID settings, and motor set points (to ensure the motor speed is consistent before shooting) and 
      * */
+    /*
     public ScoringShooterSubsystem() {
         // Factory reset, so we get the SPARKS MAX to a known state before configuring
         // them. This is useful in case a SPARK MAX is swapped out.
@@ -91,7 +93,7 @@ public class ScoringShooterSubsystem extends SubsystemBase {
         m_shooter2Motor.setIdleMode(ShooterConstants.kShooterMotor2IdleMode);
         m_shooter2Motor.setSmartCurrentLimit(ShooterConstants.kShooterMotor2CurrentLimit);
     }
-
+*/
     public void periodic() {
         // This method will be called once per scheduler run
         log();
@@ -109,7 +111,7 @@ public class ScoringShooterSubsystem extends SubsystemBase {
             //
         }
     }
-
+/*
     public void addPIDToDashboard() {
         SmartDashboard.putNumber("kShooter1P", kShooter1P);
         SmartDashboard.putNumber("kShooter1I", kShooter1I);
@@ -149,5 +151,5 @@ public class ScoringShooterSubsystem extends SubsystemBase {
         kShooter2SetPoint = Math.max(shooter2SetPoint, 4500);
         m_shooter2PIDController.setReference(kShooter2SetPoint, CANSparkMax.ControlType.kVelocity);
     }
-
+ */
 }

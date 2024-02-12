@@ -7,6 +7,7 @@ import frc.robot.ScoringConstants.ArmConstants;
 import frc.robot.subsystems.ScoringArmRotationSubsystem;
 
 public class AimToSpeakerFromPodium extends SequentialCommandGroup {
+    /*
     public AimToSpeakerFromPodium(
             ScoringArmRotationSubsystem m_arm) {
         addCommands(
@@ -16,4 +17,5 @@ public class AimToSpeakerFromPodium extends SequentialCommandGroup {
                     //,new InstantCommand(() -> m_arm.TBD_EXTEND_ARM(ArmConstants.kAmpExtension))                    )
         ));
     }
+    */
 }

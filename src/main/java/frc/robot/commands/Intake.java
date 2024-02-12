@@ -9,11 +9,12 @@ import frc.robot.subsystems.ScoringIntakeSubsystem;
 public class Intake extends SequentialCommandGroup {
     public Intake(
             ScoringIntakeSubsystem m_Intake) {
-
+/*
         addCommands(
                 new ConditionalCommand(
                         new InstantCommand(m_Intake::stop),
                         new InstantCommand(m_Intake::forward),
                         m_Intake::NoteDetected));
+                         */
     }
 }

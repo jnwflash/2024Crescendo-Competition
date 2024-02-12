@@ -15,17 +15,19 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class ScoringIntakeSubsystem extends SubsystemBase {
     // imports motor id
+    /*
     private final CANSparkMax m_intakeMotor = new CANSparkMax(IntakeConstants.kIntakeCanId, MotorType.kBrushless);
     DigitalInput breakBeam = new DigitalInput(IntakeConstants.kIRPort);
     DigitalInput breakMaxBeam = new DigitalInput(IntakeConstants.kIRPort);
 
     private double speed = IntakeConstants.speed;
     private double outakeSpeed = IntakeConstants.outtakeSpeed;
-
+    */
     /** ScoringIntakeSubsystem defines the motors of the intake portion of the robot. 
      * The intake is the portion of the robot picks up game pieces, but it does not include the arm it is attached to 
      * This subsytem defines the motors and motor controllers, limit switches methods for the intake. 
      * */
+    /*
     public ScoringIntakeSubsystem() {
         SmartDashboard.putNumber("Intake speed", speed);
     }
@@ -36,7 +38,7 @@ public class ScoringIntakeSubsystem extends SubsystemBase {
      *
      * @return value of some boolean subsystem state, such as a digital sensor.
      */
-
+/*
     public void outtake() {
         m_intakeMotor.set(outakeSpeed);
     }
@@ -75,5 +77,5 @@ public class ScoringIntakeSubsystem extends SubsystemBase {
         speed = SmartDashboard.getNumber("Intake speed", IntakeConstants.speed);
         SmartDashboard.putNumber("Intake speed", speed);
     }
-
+ */
 }

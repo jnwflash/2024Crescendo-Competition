@@ -7,7 +7,7 @@ import frc.robot.ScoringConstants.ArmConstants;
 import frc.robot.subsystems.ScoringArmRotationSubsystem;
 
 public class AimToAMP extends SequentialCommandGroup {
-    public AimToAMP(
+    /*public AimToAMP(
             ScoringArmRotationSubsystem m_arm) {
         addCommands(
                 new InstantCommand(() -> System.out.println("**START AIM TO AMP**")),
@@ -17,4 +17,5 @@ public class AimToAMP extends SequentialCommandGroup {
                     )
         );
     }
+    */
 }

@@ -17,7 +17,7 @@ import frc.robot.Constants.LoggingConstants;
 import frc.robot.Constants.TuningModeConstants;
 
 public class ScoringArmRotationSubsystem extends SubsystemBase {
-    private boolean TUNING_MODE = TuningModeConstants.kTuning;
+    /* private boolean TUNING_MODE = TuningModeConstants.kTuning;
 
     // Motors
     private final CANSparkMax m_armMotor = new CANSparkMax(
@@ -53,6 +53,7 @@ public class ScoringArmRotationSubsystem extends SubsystemBase {
      * The arm is the portion of the robot that holds the shooter and intake. It can raise or lower to change the shooting angle and it can extend or retract. 
      * This subsytem defines the motors and motor controllers, PID settings, limit switches and movement control methods for the arm. 
      * */
+    /*
     public ScoringArmRotationSubsystem() {
         // Factory reset, so we get the SPARKS MAX to a known state before configuring
         // them. This is useful in case a SPARK MAX is swapped out.
@@ -185,5 +186,5 @@ public class ScoringArmRotationSubsystem extends SubsystemBase {
             SmartDashboard.putNumber("Desired Arm Position", armPosition);
             System.out.println("Keep ARM Position " + armPosition);
         }
-    }
+    } */
 }
